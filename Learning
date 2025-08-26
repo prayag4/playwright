@@ -1,0 +1,45 @@
+1) Playwright initilization =>npm init playwright@latest
+2) Install playwright browsers => npx playwright install 
+3) Install playwright system dependencies => npx playwright install-deps
+
+What is Page Object Model (POM)?
+Page Object Model is a design pattern used in test automation where you:
+Represent each page (or section of a page) in your app as a class.
+Put all the locators and page actions in that class.
+Keep the test scripts separate, using those classes.
+
+POM Benefits:
+Locators live in one place.
+Tests are more readable.
+Easy to reuse page actions.
+If UI changes, update only the page file, not every test.
+
+Playwright script will have :
+add,edit and delete operations
+
+
+NOTE : PRACTICE PAJE OBJECT MODEL AND ALSO SIMPLE WITH PLAYWRIGHT FUNCTION TO RECALL THEM AS WELL
+
+PREPARAING FRAMEWORK
++++++++++++++++++++++
+1) Add domain and other things in .env file and use them 
+2) Use them in playwright.config.js file for URL 
+3) Add BasePage class which has all playwright functions
+4) Add locators object file which has all coommon locators
+
+
+
+
+
+script for playwright 
+script for cypress 
+script for selenium pytest
+OOPs concept
+manual testing interview questions
+playwright interview questions
+cypress interview questions
+selenium interview questions
+pytest interview questions  
+jmeter
+xpath for siblings
+Show extra work with scripts
