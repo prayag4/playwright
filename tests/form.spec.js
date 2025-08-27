@@ -11,11 +11,16 @@ let formData = {}
 
 test.describe('CRUD operations',()=>{
     test.beforeEach('Make page objects',async ({page})=>{
+        if((process.env.BASE_URL).includes("localhost")){
+            await page.evaluate(() => {
+            document.querySelectorAll('nextjs-portal').forEach(el => el.style.display = 'none'); 
+          });
+        }
         formPage = new FormPage(page)
         listingPage = new ListingPage(page)
         objRandomUtility = new RandomUtility()
     })
-    test('Verify that record can be added',async()=>{
+    test('Verify that record can be added',async({page})=>{
         await listingPage.goToListingPage();
         await listingPage.clickOnAddButton();
 

@@ -136,8 +136,7 @@ export default class FormPage extends BasePage {
     }
 
     async submitForm() {
-        let saveButton  = await this.findElementLocator(this.saveButtonSelector)
-        await this.clickElement(saveButton)
+        await this.clickElementWithJs(this.saveButtonSelector)
     }
 
 }

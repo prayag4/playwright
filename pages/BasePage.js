@@ -81,6 +81,8 @@ export default class BasePage {
         }
         await this.page.locator(dateLocator).click();
     }
-
+    async clickElementWithJs(selector){
+        await this.page.evaluate((sel)=>{document.querySelector(sel).click()},selector)
+    }
 
 }

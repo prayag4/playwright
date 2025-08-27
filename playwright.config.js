@@ -7,7 +7,7 @@ import { defineConfig, devices } from '@playwright/test';
  */
 import dotenv from 'dotenv';
 import path from 'path';
-dotenv.config({quiet:true});
+dotenv.config({ quiet: true });
 
 /**
  * @see https://playwright.dev/docs/test-configuration
@@ -31,15 +31,18 @@ export default defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on',
-    video : 'on',
-    screenshot : 'on'
+    video: 'on',
+    screenshot: 'on'
   },
 
   /* Configure projects for major browsers */
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        ...devices['Desktop Chrome'],
+        // viewport: { width: 1366, height: 768 },
+      },
     },
 
     {
