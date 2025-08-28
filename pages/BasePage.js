@@ -10,6 +10,7 @@ export default class BasePage {
 
     async clickElement(locator) {
         await locator.click()
+        await this.page.waitForLoadState('networkidle');
     }
     async findElementLocator(selector) {
         let element = await this.page.locator(selector)
@@ -65,7 +66,7 @@ export default class BasePage {
         await this.page.locator(".react-datepicker__year-dropdown-container").click()
 
         //select year
-        await this.page.locator(".react-datepicker__year-option").filter({ hasText: year}).click();
+        await this.page.locator(".react-datepicker__year-option").filter({ hasText: year }).click();
         //select date picker month dropdown
         await this.page.locator(".react-datepicker__month-dropdown-container").click()
 
@@ -81,8 +82,23 @@ export default class BasePage {
         }
         await this.page.locator(dateLocator).click();
     }
-    async clickElementWithJs(selector){
-        await this.page.evaluate((sel)=>{document.querySelector(sel).click()},selector)
+    async clickElementWithJs(selector) {
+        await this.page.evaluate((sel) => { document.querySelector(sel).click() }, selector)
+        await this.page.waitForLoadState('networkidle');
+        await this.page.waitForLoadState('domcontentloaded');
+        await this.page.waitForLoadState('load');
+    }
+
+    async findLocatorAndGetTextConent(selector) {
+        let text = await this.page.locator(selector).textContent()
+        return text
+    }
+
+    async findLocatorAndGetALLTextContent(selector) {
+        // Wait for the last cell of the last row
+        await this.page.locator('table tr:last-child td:last-child').waitFor({ state: 'visible' });
+        let arrtext = await this.page.locator(selector).allTextContents();
+        return arrtext
     }
 
 }

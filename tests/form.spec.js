@@ -41,9 +41,13 @@ test.describe('CRUD operations',()=>{
         formData.timePicker =  await objRandomUtility.generateRandomTime()
         formData.location =  await objRandomUtility.getRandomLatLong()
 
-        let updatedFormData = await formPage.fillForm(formData)
+        let addedFormData = await formPage.fillForm(formData)
         await formPage.submitForm()
-        console.log(updatedFormData)
+        console.log(addedFormData)
 
+        
+        //verify value in table
+        await listingPage.verifyInTable(addedFormData)
+        
     })
 })
