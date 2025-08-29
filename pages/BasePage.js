@@ -1,4 +1,6 @@
-// export default class BasePage{
+// export default class BasePage
+import {expect } from '@playwright/test'
+
 export default class BasePage {
     constructor(page) {
         this.page = page
@@ -94,11 +96,22 @@ export default class BasePage {
         return text
     }
 
-    async findLocatorAndGetALLTextContent(selector) {
+    async findLocatorAndGetALLFieldNamesInTable(selector) {
         // Wait for the last cell of the last row
         await this.page.locator('table tr:last-child td:last-child').waitFor({ state: 'visible' });
         let arrtext = await this.page.locator(selector).allTextContents();
         return arrtext
     }
 
+    async softAssertEqual(actual, expected, message=null) {
+        expect.soft(actual, message).toBe(expected);
+      }
+
+   async handleDialogAndAccept(){
+    await this.page.on('dialog', async dialog => {
+        console.log(dialog.message()); // log the message
+        await dialog.accept();         // click "OK"
+        // or await dialog.dismiss();  // click "Cancel"
+    });
+   }   
 }

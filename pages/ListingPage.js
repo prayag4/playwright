@@ -17,18 +17,15 @@ export default class ListingPage extends BasePage{
         await this.clickElement(element)
     }
 
-    async verifyInTable(formData){
-        // let id = await this.findElementLocator('table tr td:first-child') //first column
-        // let id = await this.findElementLocator('table tr:last-child td:first-child') //last row , first child
-      
-        let arrFieldNamesInTable = await this.findLocatorAndGetALLTextContent('table thead tr th')
-        console.log(arrFieldNamesInTable)
-        singleLineIndex = (await arrFieldNamesInTable.indexOf("Single Line")) + 1
-        console.log(singleLineIndex)
-        let latestsinglelineSelector = `table tr:last-child td:nth-child(${singleLineIndex})`
-        console.log(latestsinglelineSelector)
-        let addedSingleLineText = await this.findLocatorAndGetTextConent(latestsinglelineSelector)
-        expect(addedSingleLineText).toBe(await formData.singleLine)
+    async getLatestTableValue(columnName){
+        let arrFieldNamesInTable = await this.findLocatorAndGetALLFieldNamesInTable('table thead tr th')
+        let columnIndex = (await arrFieldNamesInTable.indexOf(columnName)) + 1
+        let latestColumnNameSelector = `table tr:last-child td:nth-child(${columnIndex})`
+        let cellValue = await this.findLocatorAndGetTextConent(latestColumnNameSelector)
+        return cellValue
+    }
 
-    }0
+    async deleteRecord(){
+        
+    }
 }

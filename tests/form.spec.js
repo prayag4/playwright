@@ -43,11 +43,18 @@ test.describe('CRUD operations',()=>{
 
         let addedFormData = await formPage.fillForm(formData)
         await formPage.submitForm()
-        console.log(addedFormData)
 
         
         //verify value in table
-        await listingPage.verifyInTable(addedFormData)
+        let singleLineValue = await listingPage.getLatestTableValue("Single Line")
+        await listingPage.softAssertEqual(singleLineValue,addedFormData.singleLine)
+
+        let numberValue = await listingPage.getLatestTableValue("Number")
+        await listingPage.softAssertEqual(numberValue,addedFormData.number)
+
+
+        //verify delete operation
         
+
     })
 })
