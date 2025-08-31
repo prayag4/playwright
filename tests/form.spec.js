@@ -58,7 +58,7 @@ test.describe('CRUD operations',()=>{
         await listingPage.softAssertEqual(numberValue,expectedNumberValue)
 
 
-        //verify delete operation
+        //delete the record
         await listingPage.deleteRecord(expectedSingleLineValue)
     })
 })
