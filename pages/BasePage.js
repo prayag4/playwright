@@ -1,5 +1,5 @@
 // export default class BasePage
-import {expect } from '@playwright/test'
+import { expect } from '@playwright/test'
 
 export default class BasePage {
     constructor(page) {
@@ -12,7 +12,6 @@ export default class BasePage {
 
     async clickElement(locator) {
         await locator.click()
-        await this.page.waitForLoadState('networkidle');
     }
     async findElementLocator(selector) {
         let element = await this.page.locator(selector)
@@ -103,15 +102,32 @@ export default class BasePage {
         return arrtext
     }
 
-    async softAssertEqual(actual, expected, message=null) {
-        expect.soft(actual, message).toBe(expected);
-      }
+    async softAssertEqual(actual, expected) {
+        expect(actual).toBe(expected)
+    }
+    async waitForDialogAndAccept() {
+        console.log("Registering dialog handler...");
 
-   async handleDialogAndAccept(){
-    await this.page.on('dialog', async dialog => {
-        console.log(dialog.message()); // log the message
-        await dialog.accept();         // click "OK"
-        // or await dialog.dismiss();  // click "Cancel"
-    });
-   }   
+        this.page.on('dialog', async dialog => {
+            console.log("Dialog appeared with message:", dialog.message());
+            await dialog.accept();
+            console.log("Dialog accepted.");
+        });
+    }
+
+
+    async findLocatorWithFilterText(selector, fieldValue) {
+        let locator = this.page.locator(selector).filter({ hasText: fieldValue })
+        return locator
+    }
+
+    async findLocatorFromLocator(parentLocator, selector) {
+        let childLocator = await parentLocator.locator(selector)
+        return childLocator
+    }
+
+    async delay(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
 }

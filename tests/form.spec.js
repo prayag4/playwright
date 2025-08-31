@@ -42,19 +42,24 @@ test.describe('CRUD operations',()=>{
         formData.location =  await objRandomUtility.getRandomLatLong()
 
         let addedFormData = await formPage.fillForm(formData)
+        console.log(addedFormData)
         await formPage.submitForm()
 
         
+        await listingPage.delay(2000);
+        console.log("delay happened")
         //verify value in table
         let singleLineValue = await listingPage.getLatestTableValue("Single Line")
-        await listingPage.softAssertEqual(singleLineValue,addedFormData.singleLine)
+        let expectedSingleLineValue = await addedFormData.singleLine
+        await listingPage.softAssertEqual(singleLineValue,expectedSingleLineValue)
 
         let numberValue = await listingPage.getLatestTableValue("Number")
-        await listingPage.softAssertEqual(numberValue,addedFormData.number)
+        let expectedNumberValue = await addedFormData.number
+        await listingPage.softAssertEqual(numberValue,expectedNumberValue)
 
 
         //verify delete operation
-        
+        await listingPage.deleteRecord(expectedSingleLineValue)
 
     })
 })
