@@ -60,6 +60,5 @@ test.describe('CRUD operations',()=>{
 
         //verify delete operation
         await listingPage.deleteRecord(expectedSingleLineValue)
-
     })
 })
