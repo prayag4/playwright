@@ -46,8 +46,8 @@ test.describe('CRUD operations',()=>{
         await formPage.submitForm()
 
         
-        await listingPage.delay(2000);
-        console.log("delay happened")
+        // await listingPage.delay(2000);
+        // console.log("delay happened")
         //verify value in table
         let singleLineValue = await listingPage.getLatestTableValue("Single Line")
         let expectedSingleLineValue = await addedFormData.singleLine
