@@ -26,6 +26,7 @@ export default class ListingPage extends BasePage {
         return cellValue
     }
 
+    
     async deleteRecord(fieldValue) {
         let row = await this.findLocatorWithFilterText("table tr", fieldValue)
         let deleteButtonLocator = await this.findLocatorFromLocator(row, this.deleteButtonSelector)
