@@ -1,7 +1,6 @@
 import { expect } from "@playwright/test";
 import BasePage from "./BasePage";
 
-let singleLineIndex
 export default class ListingPage extends BasePage {
     constructor(page) {
         super(page)
