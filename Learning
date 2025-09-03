@@ -31,3 +31,9 @@ PREPARAING FRAMEWORK
 remote set url
 ++++++++++++
 git remote set-url origin git@github-prayag:prayag4/playwright.git                                  
+
+
+set credentials locally for repo 
+++++++++++++++++++++
+git config user.name "Your Name"
+git config user.email "your_email@example.com"
