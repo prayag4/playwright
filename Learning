@@ -27,3 +27,7 @@ PREPARAING FRAMEWORK
 3) Add BasePage class which has all playwright functions
 4) Add locators object file which has all coommon locators
 
+
+remote set url
+++++++++++++
+git remote set-url origin git@github-prayag:prayag4/playwright.git                                  
