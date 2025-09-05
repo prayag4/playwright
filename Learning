@@ -1,3 +1,5 @@
+for practice , Need to make one spec.js file and need to include all playwright functions directly in it
+
 1) Playwright initilization =>npm init playwright@latest
 2) Install playwright browsers => npx playwright install 
 3) Install playwright system dependencies => npx playwright install-deps
