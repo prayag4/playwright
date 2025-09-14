@@ -85,7 +85,7 @@ export default class BasePage {
     }
     async clickElementWithJs(selector) {
         await this.page.evaluate((sel) => { document.querySelector(sel).click() }, selector)
-        await this.page.waitForLoadState('networkidle');
+            await this.page.waitForLoadState('networkidle');
         await this.page.waitForLoadState('domcontentloaded');
         await this.page.waitForLoadState('load');
     }

@@ -1,6 +1,6 @@
 import { fi } from 'faker/lib/locales';
 
-const RandomUtility = require('../utility/randomUtility')
+const RandomUtility = require('../utility/RandomUtility')
 const { test } = require('@playwright/test');
 const path = require('path')
 //OBJECTS
