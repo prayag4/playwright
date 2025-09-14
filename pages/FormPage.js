@@ -52,7 +52,7 @@ export default class FormPage extends BasePage {
         }
         if (formData.singleSelection) {
             let selectLocator = await this.findElementLocator(this.singleSelectionSelector)
-            if (formData.singleSelection = "random") {
+            if (formData.singleSelection === "random") {
                 let arrayOptionElements = await this.findSelectTagOptionElements(selectLocator)
                 let randomOption = await this.objRandomUtility.getRandomSelectedOneValueFromArray(arrayOptionElements)
                 let randomOptionValue = await this.getAttributeFromLocator(randomOption, 'value')
@@ -65,7 +65,7 @@ export default class FormPage extends BasePage {
         }
         if (formData.multiSelection) {
             let selectLocator = await this.findElementLocator(this.multiSelectionSelector)
-            if (formData.multiSelection = "random") {
+            if (formData.multiSelection === "random") {
                 let arrayOptionElements = await this.findSelectTagOptionElements(selectLocator)
                 let randomOptions = await this.objRandomUtility.getRandomSelectedValuesFromArray(arrayOptionElements)
                 let arrayRandomOptionValue = await Promise.all(randomOptions.map(async (randomOption) => { return await this.getAttributeFromLocator(randomOption, 'value') }))
@@ -81,7 +81,7 @@ export default class FormPage extends BasePage {
             await this.uploadFile(fileFieldLocator, formData.file)
         }
         if (formData.radioButton) {
-            if (formData.radioButton = "random") {
+            if (formData.radioButton === "random") {
                 let arrayOptionElements = await this.findAllElementLocators(this.radioButtonSelector)
                 let randomOption = await this.objRandomUtility.getRandomSelectedOneValueFromArray(arrayOptionElements)
                 let randomOptionValue = await this.getAttributeFromLocator(randomOption, 'value')
@@ -93,7 +93,7 @@ export default class FormPage extends BasePage {
             }
         }
         if (formData.checkbox) {
-            if (formData.checkbox = "random") {
+            if (formData.checkbox === "random") {
                 let arrayOptionElements = await this.findAllElementLocators(this.checkboxSelector)
                 let randomOptions = await this.objRandomUtility.getRandomSelectedValuesFromArray(arrayOptionElements)
                 let arrayRandomOptionValue = await Promise.all(randomOptions.map(async (randomOption) => { return (await randomOption.locator('xpath=following-sibling::span')).textContent(); }))
